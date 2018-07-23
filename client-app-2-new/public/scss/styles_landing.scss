@@ -1,0 +1,265 @@
+//Color Schemes
+
+$lighter: #f9efff;
+$light: #cbc6d0;
+$medium: #c7b2f6;
+$dark: #3a3958;
+$darker: #332d46;
+
+$utility1: #d14e4f;
+$utility2: #8BC34A;
+$utility3: #1E88E5;
+$utility4: #ff7a3e;
+
+
+//Font
+
+$font: 'Lato', sans-serif;
+$font2: 'Montserrat', sans-serif;
+
+@mixin generateButton($color, $borderWidth: 3px) {
+  font-family: $font2;
+  font-size: 1.3em;
+  color: $darker;
+  cursor: pointer;
+
+  i {
+    color: $color;
+  }
+  span {
+    margin-left: 3px;
+    border-bottom: $borderWidth solid $color;
+  }
+}
+
+@mixin generateBorder($color, $width, $sides: "all"){
+  @if($sides == "all"){
+    border: $width solid $color
+  }@else if($sides == "bottom") {
+    border-bottom: $width solid $color;
+  }
+}
+
+
+
+
+//General Styles
+
+body {
+  font-family: $font;
+  font-size: 14px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.btn-primary {
+  border-radius: 0;
+  border: none;
+}
+.bold-text{
+  font-weight: bold;
+}
+
+.custom-button{
+  border-radius:0;
+  border:none;
+}
+
+//NAVBAR STYLES
+
+.custom-navbar{
+  background-color: rgba(0, 183, 255, 0);
+  border: none;
+  border-radius: 0;
+  color: $darker;
+  font-family: $font2;
+
+  .navbar-brand{
+    color: $darker;
+  }
+
+  .navbar-right{
+    span{
+      color: $light;
+      font-family: $font2;
+      //font-weight: bold;
+    }
+  }
+}
+
+.custom-navbar.scrolled{
+  background-color: whitesmoke;
+  .navbar-right{
+    span{
+      color: $dark;
+      font-family: $font2;
+      //font-weight: bold;
+    }
+  }
+}
+
+.jumbotron{
+  background: url("../img/header.jpg") center/cover no-repeat;
+  height: 550px;
+  padding: 120px 40px;
+  p{
+    //font-weight: bold;
+    color: $darker;
+  }
+  blockquote{
+    border-left: 5px solid $utility2;
+    p{
+      font-family: $font2;
+    }
+  }
+}
+
+
+.custom-modal{
+  border-radius: 0;
+  font-family: $font2;
+  .modal-header{
+    background-color: $utility3;
+    color: $darker;
+    h4{
+      //font-weight: bold;
+      font-family: $font2;
+      font-size: 18px;
+      color: $lighter;
+    }
+
+  }
+  .modal-body{
+    .row{
+      margin-top: 10px;
+      input{
+        border-radius: 0;
+      }
+      p{
+        //font-weight: bold;
+        color: $dark;
+        font-size: 17px;
+        margin-top: 4px;
+      }
+    }
+  }
+}
+
+.feedback-card{
+  //margin: 20px;
+  border: 1px solid $utility2;
+  outline: 2px solid $medium;
+  outline-offset: 5px;
+  padding: 15px 30px;
+  p{
+    font-size: 16px;
+    font-family: $font2;
+  }
+}
+
+.created-forms-header{
+  text-align: center;
+  p{
+    font-size: 1.4em;
+    font-weight: bold;
+    color: $utility2;
+    @include generateBorder($utility2, 3px, 'bottom');
+  }
+}
+
+.created-forms-card{
+  @include generateBorder($utility4, 3px);
+  font-family: $font2;
+  hr{
+    margin: 0;
+    padding: 0;
+    margin-left: -5px;
+  }
+  .created-forms-card-header{
+    padding: 10px 8px;
+    @include generateBorder($utility4, 2px, "bottom");
+    background-color: $utility4;
+    h4{
+      color: $lighter;
+      font-family: $font2;
+      //font-weight: bold;
+      font-size: 1.4em;
+    }
+  }
+  .created-forms-date{
+    padding: 10px 8px;
+    color: $darker;
+    i{
+      font-size: 1.2em;
+      color: $utility3;
+    }
+    span{
+      font-size: 1.1em;
+    }
+    //@include generateBorder($utility4, 2px, "bottom");
+  }
+  .targeted-departments-header{
+    padding: 10px 8px;
+    p{
+      color: $darker;
+      font-size: 1.2em;
+    }
+    .slab{
+      display: inline;
+      //margin-right: 8px;
+      background-color: $utility3;
+      border-radius: 15px;
+      padding: 5px 10px;
+      //font-weight: bold;
+      color: $lighter;
+      margin-top: 5px;
+    }
+  }
+  .admin-actions{
+    padding: 10px 0;
+  }
+}
+
+.emphasis-text{
+  text-decoration: underline;
+}
+
+.custom-button-login {
+  @include generateButton($utility2);
+}
+
+.custom-button-logout {
+  @include generateButton($utility1);
+}
+
+.custom-button-register {
+  @include generateButton($utility3);
+}
+
+.custom-button-edit {
+  @include generateButton($utility4);
+}
+

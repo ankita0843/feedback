@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="clientApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <script src="https://use.fontawesome.com/b7f499e08c.js"></script>
+    <link rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+</head>
+<body ng-controller="MainController">
+<nav class="navbar navbar-inverse navbar-fixed-top custom-navbar" id="custom-navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">Smart Feedback System</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <div class="navbar-right" style="padding: 10px; width: 35%">
+                <% if(currentUser){ %>
+
+                <span class="bold-text" style="font-size: 18px">Hello <%= currentUser.username %></span>
+
+                <div class="col-xs-6 custom-button-logout">
+                    <a href="/logout"><i class="fa fa-envelope-o"></i><span>Logout</span></a>
+                </div>
+                <% } else { %>
+                <div class="col-xs-6 custom-button-register" data-toggle="modal" data-target="#registration-modal">
+                    <i class="fa fa-envelope-o"></i><span>Register</span>
+                </div>
+                <div class="col-xs-6 custom-button-login" data-toggle="modal" data-target="#login-modal">
+                    <i class="fa fa-sign-in"></i><span>Login</span>
+                </div>
+                <% } %>
+
+            </div>
+        </div><!--/.navbar-collapse -->
+    </div>
+</nav>
+
+
+<div class="jumbotron">
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+                condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+                euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+                condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+                euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Heading</h2>
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula
+                porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut
+                fermentum massa justo sit amet risus.</p>
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+    </div>
+    <hr>
+
+    <h3>Please fill the feedback form below</h3>
+    <hr>
+
+    <div class="row feedback-form-row">
+        <div class="col-xs-12">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="item"  ng-class="{'active': $first}"  ng-repeat="question in questions">
+                        <div class="row question-title-row">
+                            <h3>{{question.questionNo}}. {{question.title}}</h3>
+                            <hr>
+                        </div>
+                        <div class="row options-row">
+                            <div class="col-xs-2" style="width: 20%" ng-repeat="option in question.optionTitles">
+                                {{option}}
+                                <img src="/img/very_happy.png" alt="" ng-if="$index==4 && question.displayEmotion">
+                                <img src="/img/happy.png" alt="" ng-if="$index==3 && question.displayEmotion">
+                                <img src="/img/ok.png" alt="" ng-if="$index==2 && question.displayEmotion">
+                                <img src="/img/sad.png" alt="" ng-if="$index==1 && question.displayEmotion">
+                                <img src="/img/very_sad.png" alt="" ng-if="$index==0 && question.displayEmotion">
+                                <div class="radio">
+                                    <input type="radio" data-text="{{option}}" name="optionsRadios" id="option-{{question.questionNo}}{{$index}}" ng-click="radioButtonClicked()" value="{{$index}}">
+                                </div> <!-- /ng-repeat="option in question.optionTitles"-->
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row text-center">
+                            <div class="btn custom-button btn-warning prev-button" id="prev-button" role="button" ng-if="!$first" ng-click="previousButtonClicked(question.questionNo)" >Prev</div>
+                            <div class="btn custom-button btn-primary next-button"
+                                 id="next-button" role="button"  ng-if="!$last" ng-disabled="nextButtonDisabled"
+                                 ng-click="nextButtonDisabled || storeResponse(question.questionNo)" disabled>Next</div>
+                            <div class="btn custom-button btn-primary submit-button" ng-if="$last" ng-disabled="nextButtonDisabled" ng-click="submitButtonClickedText()">Submit</div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+</div>
+
+
+
+<div class="modal fade submitted-form-modal" id="submitted-form-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal">
+            <div class="modal-header" style="background: #70bb6f">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Feedback Recorded</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-6 col-xs-offset-3">
+                        <div class="success-icon">
+                            <i class="fa fa-check"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <a href="#">
+                    <button type="button" class="btn btn-default custom-button" data-dismiss="modal">Close</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade submitted-form-modal" id="text-questions-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal">
+            <div class="modal-header" style="background: #ff7a3e">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Fill Questions</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" ng-repeat="textQuestion in textQuestions track by $index">
+                    <div class="col-xs-8 col-xs-offset-3">
+                        <h4>{{textQuestion.title}}</h4>
+                        <textarea id="textarea-{{$index}}" class="custom-textarea"></textarea>
+                    </div>
+                    <hr>
+                </div>
+
+                <button type="button" class="btn btn-default custom-button" ng-click="submitButtonClicked()">Submit</button>
+            </div>
+            <div class="modal-footer">
+                <a href="#">
+                    <button type="button" class="btn btn-default custom-button" data-dismiss="modal">Close</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/angular.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.carousel').carousel({
+            interval: false
+        });
+    })
+
+    window.userInfo = <%- JSON.stringify(currentUser) %>;
+    window.feedbackFormId = <%- JSON.stringify(feedback_form_id) %>;
+    console.log(userInfo);
+    console.log(feedbackFormId);
+</script>
+
+<script>
+    window.onscroll = function () {
+        myFunction()
+    };
+
+    function myFunction() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            $('#custom-navbar').addClass('scrolled');
+        } else {
+            $('#custom-navbar').removeClass('scrolled');
+        }
+    }
+
+
+</script>
+
+<script src="/js/script.js"></script>
+<script src="/js/service.js"></script>
+
+</body>
+</html>

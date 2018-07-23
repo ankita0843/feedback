@@ -1,0 +1,13 @@
+$scope.deleteProduct = function (value, idx) {
+
+    var this_id = value._id;
+
+    // delete
+    $resource.delete('/api/products/' + this_id)
+        .success(function (data) {
+            console.log(data);
+        })
+        .error(function (data) {
+            console.log('Error: ' + data);
+        })
+}

@@ -1,0 +1,252 @@
+//Color Schemes
+
+$lighter: #f9efff;
+$light: #bcb8c1;
+$medium: #c7b2f6;
+$dark: #3a3958;
+$darker: #332d46;
+
+$utility1: #d14e4f;
+$utility2: #8BC34A;
+$utility3: #1E88E5;
+$utility4: #ff7a3e;
+
+//Font
+
+$font: 'Lato', sans-serif;
+$font2: 'Montserrat', sans-serif;
+
+@mixin generateButton($color, $borderWidth: 3px) {
+  font-family: $font2;
+  font-size: 1.3em;
+  color: $darker;
+  cursor: pointer;
+
+  i {
+    color: $color;
+  }
+  span {
+    margin-left: 3px;
+    border-bottom: $borderWidth solid $color;
+  }
+}
+
+//General Styles
+
+body {
+  font-family: $font;
+  font-size: 14px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.custom-button {
+  border: none;
+  border-radius: 0;
+}
+
+.btn-success {
+  background-color: #41ac42;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+//NAVBAR STYLES
+
+.custom-navbar {
+  background-color: rgba(0, 183, 255, 0);
+  border: none;
+  border-radius: 0;
+  color: $darker;
+
+  .navbar-brand {
+    color: $light;
+  }
+
+  .navbar-right {
+    span {
+      color: $light;
+      font-family: $font2;
+      //font-weight: bold;
+    }
+  }
+}
+
+.custom-navbar.scrolled {
+  background-color: whitesmoke;
+  .navbar-brand {
+    color: $dark;
+  }
+  .navbar-right {
+    span {
+      color: $dark;
+      font-family: $font2;
+      //font-weight: bold;
+    }
+  }
+}
+
+.jumbotron {
+  background: url("../img/header-image-3.jpg") center/cover no-repeat;
+  height: 500px;
+  padding: 80px 40px;
+  p {
+    //font-weight: bold;
+    color: $darker;
+  }
+  blockquote {
+    border-left: 5px solid #70b458;
+    p {
+      font-family: $font2;
+    }
+  }
+}
+
+.custom-modal {
+  border-radius: 0;
+  font-family: $font2;
+  .modal-header {
+    background-color: $utility3;
+    color: $darker;
+    h4 {
+      //font-weight: bold;
+      font-family: $font2;
+      font-size: 18px;
+    }
+
+  }
+  .modal-body {
+    .row {
+      margin-top: 10px;
+      input {
+        border-radius: 0;
+      }
+      p {
+        //font-weight: bold;
+        color: $dark;
+        font-size: 17px;
+        margin-top: 4px;
+      }
+      .success-icon {
+        border: 3px solid $utility2;
+        border-radius: 50%;
+        text-align: center;
+        padding: 30px 30px;
+        i {
+          font-size: 10em;
+          color: $utility2;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+.feedback-card {
+  //margin: 20px;
+  border: 1px solid $utility2;
+  outline: 2px solid $medium;
+  outline-offset: 5px;
+  padding: 15px 30px;
+  p {
+    font-size: 16px;
+    font-family: $font2;
+  }
+  .slab {
+    display: inline;
+    //margin-right: 8px;
+    background-color: $utility4;
+    border-radius: 15px;
+    padding: 5px 10px;
+    //font-weight: bold;
+    color: $lighter;
+    margin-top: 5px;
+  }
+}
+
+.feedback-form-row {
+  border: 2px solid $utility2;
+  outline: 2px solid $medium;
+  outline-offset: 5px;
+  .carousel-inner {
+    overflow: visible;
+
+    .question-title-row {
+      padding: 10px 40px;
+      h3 {
+        font-family: $font2;
+        font-size: 1.6em;
+
+        color: $dark;
+      }
+    }
+
+    .options-row {
+      padding: 20px 30px;
+      font-family: $font2;
+      font-size: 1.3em;
+
+      .radio {
+        margin-left: 25px;
+      }
+    }
+  }
+}
+
+.custom-textarea {
+  border: 1px solid $utility4;
+  padding: 20px;
+  font-family: $font2;
+  transition: all 0.3s;
+}
+
+.custom-textarea:focus {
+  border: 1px solid #a2512d;
+  padding: 20px;
+  font-family: $font2;
+}
+
+.emphasis-text {
+  text-decoration: underline;
+}
+
+.custom-button-login {
+  @include generateButton($utility2);
+}
+
+.custom-button-logout {
+  @include generateButton($utility1);
+}
+
+.custom-button-register {
+  @include generateButton($utility3);
+}
+
+.custom-button-edit {
+  @include generateButton($utility4);
+}

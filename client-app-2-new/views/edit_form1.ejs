@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="clientApp2">
+<head>
+    <meta charset="utf-8">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="https://use.fontawesome.com/b7f499e08c.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="scss/style_create_form.css">
+</head>
+<body ng-controller="MainController" ng-controller="AdminController" ng-app="clientApp">
+
+<div class="row">
+   
+    <div class="col-sm-8 main-content" >
+        <h3 style="align:center">Current View: {{currentView}}</h3>
+        <hr>
+        <div class="row ">
+            <div class="col-xs-9 targeted-departments-container">
+                <p class="questions"  ng-repeat="question in questions track by $index">
+           Question No: {{$index + 1}}: {{question}}
+           <div class="row">
+                     <div class="col-xs-4 custom-button-edit" ng-click="editQuestion($index + 1)">
+                        <i class="fa fa-pencil-square-o"></i><span>Edit</span>
+                    </div>
+                    <div class="col-xs-4 custom-button-done" ng-click="saveQuestion($index + 1)" >
+                        <i class="fa fa-floppy-o"></i><span>Done</span>
+                    </div>
+                   
+                </div>
+        </p>
+                <br>
+                <hr>
+                 
+     </div>
+</div>
+   
+                </div>
+</div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/angular.js"></script>
+<script>
+    window.adminInfo = <%- JSON.stringify(currentUser) %>;
+    window.reviewId = <%- JSON.stringify(reviewId) %>;
+</script>
+<script src="/js/script_view_stats.js"></script>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/angular.js"></script>
+<script src="/js/script_create_form.js"></script>
+
+</body>
+</html>
+</body>
+</html>

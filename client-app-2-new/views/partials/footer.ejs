@@ -1,0 +1,45 @@
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/angular.js"></script>
+<script>
+    window.onscroll = function () {
+        myFunction()
+    };
+
+    function myFunction() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            $('#custom-navbar').addClass('scrolled');
+        } else {
+            $('#custom-navbar').removeClass('scrolled');
+        }
+    }
+
+}
+var moment = require('moment');
+exports.index = function(req, res) {
+    res.render('index', { moment: moment });
+    }
+</script>
+<script>
+
+            function myForm() {
+                var change = document.getElementById("toggle");
+                if (change.innerHTML == "Activate")
+                {
+                    change.innerHTML = "Deactivate";
+                }
+                else {
+                    change.innerHTML = "Activate";
+                }
+            }
+
+        </script>
+<script src="/js/service.js"></script>
+<script src="/js/script.js"></script>
+<script src="/js/upload.js"></script>
+<script src="/js/script_create_form.js"></script>
+<script src="/js/landing.js"></script>
+
+
+</body>
+</html>

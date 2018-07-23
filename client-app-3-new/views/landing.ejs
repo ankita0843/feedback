@@ -1,0 +1,76 @@
+<% include ./partials/header.ejs %>
+<% include ./partials/footer.ejs %>
+<% include ./partials/registration-modal.ejs %>
+<div class="container">
+    
+    <hr>
+    <% if(currentUser){ %>
+    
+       <% if(currentUser.profId==="12345") {%>
+       <h3>Subjects Taught this Semester</h3>
+        <h5>IT 602</h5>
+        <h5>IT 603</h5>
+        <% }%>
+        <% if(currentUser.profId==="23456") {%>
+       <h3>Subjects Taught this Semester</h3>
+        <h5>IT 601</h5>
+        <% }%>
+        <% if(currentUser.profId==="34567") {%>
+       <h3>Subjects Taught this Semester</h3>
+        <h5>IT 603</h5>
+        <% }%>
+        <% if(currentUser.profId==="45678") {%>
+       <h3>Subjects Taught this Semester</h3>
+        <h5>IT 604</h5>
+        <% }%>
+        <%if(currentUser.profId==="56789") {%>
+       <h3>Subjects Taught this Semester</h3>
+        <h5>IT 605</h5>
+        
+        <% }%>
+
+    <div class="row created-forms-header">
+        <div class="col-xs-4 col-sm-offset-4">
+            <p>Created Forms</p>
+        </div>
+    </div>
+    <% } %>
+    <br>
+    <% if( forms != null){
+        for(var i = 0; i < forms.length; ++i){ %>
+        <div class="col-md-5  feedback-card" style="margin-top: 40px;margin-left: 40px">
+            <h4>Feedback Form <%= i+1 %></h4>
+            <hr>
+            <p><i class="fa fa-users"></i>&nbsp; Departments:</p>
+            <div style="margin-top: 10px">
+                <% forms[i].targetedUsers.forEach(function (department) { %>
+                <div class="slab"><%= department %></div>
+                <% }) %>
+            </div>
+            <hr>
+            <div class="row admin-actions">
+                <div class="col-xs-6 custom-button-login">
+                    <a href="/details/<%= forms[i]._id %>"><i class="fa fa-external-link"></i><span>View Details</span></a>
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <% } %>
+    <br><br><br>
+    <!--<% if(currentUser){ %>
+        <div class="row">
+            <div class="col-xs-6 custom-button-login">
+                <a href="/create_review"><i class="fa fa-external-link"></i><span>Create a new Review</span></a>
+            </div>
+        </div>-->
+        <br>
+    <% } %>
+
+
+
+
+</div> <!-- /container -->
+
+
+
+<% include ./partials/login-modal.ejs %>

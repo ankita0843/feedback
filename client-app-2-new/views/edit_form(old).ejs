@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="clientApp3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://use.fontawesome.com/b7f499e08c.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="scss/style_create_form.css">
+     <link rel="stylesheet" href="/scss/style_view_stats.css">
+
+</head>
+<body ng-controller="AdminController" ng-controller="MainController">
+
+
+<div class="row">
+    
+    <div class="col-sm-8 main-content">
+        <h3>Current View: {{currentView}} </h3>
+        <hr>
+        <div class="row ">
+            <div class="col-xs-9 targeted-departments-container">
+                <div class="row header-row">
+                    Select Targeted Branches
+                </div>
+                <br>
+                <div class="row" >
+                    <form class="form-inline department-form">
+                        <div   aria-disabled="true" ng-repeat="department in departments">
+                            <label> 
+                               <input id="department-{{department}}" value="{{department.toLowerCase()}}"  type="radio"> {{department}}  </label>  
+                        </div>
+                    </form>
+                </div>
+                <hr>
+              <div class="row">
+                    <div class="col-xs-4 custom-button-done" ng-click="departmentSelectionDone(true)" >
+                        <i class="fa fa-floppy-o"></i><span>Done</span>
+                    </div>
+                    <div class="col-xs-4 custom-button-edit" ng-click="departmentSelectionDone(false)">
+                        <i class="fa fa-pencil-square-o"></i><span>Edit</span>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+  
+        <p class="questions"  ng-repeat="question in questions track by $index">
+           Question No: {{$index + 1}}: {{question}}
+           <div class="row">
+                     <div class="col-xs-4 custom-button-edit" ng-click="editQuestion($index + 1)">
+                        <i class="fa fa-pencil-square-o"></i><span>Edit</span>
+                    </div>
+                    <div class="col-xs-4 custom-button-done" ng-click="saveQuestion($index + 1)" >
+                        <i class="fa fa-floppy-o"></i><span>Done</span>
+                    </div>
+                   
+                </div>
+        </p>
+        
+        <div class="row" style="margin-top: 30px">
+            <div class="col-xs-6 add-question">
+                <div class="row">
+                    <div class="col-xs-9">
+                        <h4>Add Another Question</h4>
+                    </div>
+                    <div class="col-xs-3">
+                        <button class="btn btn-primary custom-button-add" ng-click="addQuestion()">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 add-question">
+                <div class="row">
+                    <div class="col-xs-9">
+                        <h4>Add A Text Question</h4>
+                    </div>
+                    <div class="col-xs-3">
+                        <button class="btn btn-primary custom-button-add" ng-click="addTextQuestion()">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 30px">
+            <div class="col-xs-4 custom-button-select-all" ng-click="submitForm()">
+                <i class="fa fa-paper-plane"></i><span>Submit Form</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--SUCCESS MODAL-->
+<div class="modal fade submitted-form-modal" id="submitted-form-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content custom-modal">
+            <div class="modal-header" style="background: #70bb6f">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Feedback Form Successfully Published</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-6 col-xs-offset-3">
+                        <div class="success-icon">
+                            <i class="fa fa-check"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#">
+                    <button type="button" class="btn btn-default custom-button" data-dismiss="modal">Close</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/angular.js"></script>
+<script src="/js/script_create_form.js"></script>
+<script>
+    window.userInfo = <%- JSON.stringify(currentUser) %>;
+    window.adminInfo = <%- JSON.stringify(currentUser) %>;
+    window.reviewId = <%- JSON.stringify(reviewId) %>;
+    //console.log(userInfo);
+</script>
+<script src="/js/script_view_stats.js"></script>
+<script src="/js/script_edit_form.js"></script>
+
+</body>
+</html>

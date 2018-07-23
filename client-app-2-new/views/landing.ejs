@@ -1,0 +1,130 @@
+<% include ./partials/header.ejs %>
+<div class="container">
+    <!-- Example row of columns -->
+    <!--<div class="row">-->
+        <!--<div class="col-md-4">-->
+            <!--<h2>Heading</h2>-->
+            <!--<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris-->
+                <!--condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis-->
+                <!--euismod. Donec sed odio dui. </p>-->
+            <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+        <!--</div>-->
+        <!--<div class="col-md-4">-->
+            <!--<h2>Heading</h2>-->
+            <!--<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris-->
+                <!--condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis-->
+                <!--euismod. Donec sed odio dui. </p>-->
+            <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+        <!--</div>-->
+        <!--<div class="col-md-4">-->
+            <!--<h2>Heading</h2>-->
+            <!--<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula-->
+                <!--porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut-->
+                <!--fermentum massa justo sit amet risus.</p>-->
+            <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+        <!--</div>-->
+    <!--</div>-->
+    <hr>
+
+
+   <!-- <input type="submit" value="Upload"></input>-->
+<% if(currentUser){ %>
+Student Details
+    <form action="/" method="POST" encType="multipart/form-data">
+        <input type="file" name="file" accept="*.csv" /><br/><br/>
+        <input type="submit" value="Upload" />
+    </form>
+    <br>
+   Professors Details
+    <form action="/prof" method="POST" encType="multipart/form-data">
+        <input type="file" name="file" accept="*.csv" /><br/><br/>
+        <input type="submit" value="Upload" />
+    </form>
+    <div class="row created-forms-header">
+        <div class="col-xs-4 col-sm-offset-4">
+            <p>Created Forms</p>
+        </div>
+    </div>
+    <% } %>
+    <br>
+    <% if(forms != null){ %>
+        <div class="row">
+        <% forms.forEach(function (form, index) { %>
+        <div class="created-forms-card col-sm-5 col-sm-offset-1" style="margin-top: 30px">
+            <div class="row created-forms-card-header">
+                <h4>Review No: <%= index+1 %></h4>
+            </div>
+            <div class="row created-forms-date">
+                <i class="fa fa-clock-o"></i>
+                <span>Created At: <span class="bold-text"><%=  +new Date();%></span></span>
+            </div>
+            <hr>
+            <div class="row targeted-departments-header">
+                <p>Targeted Branches:</p>
+                <div style="margin-top: 10px">
+                    <% form.targetedUsers.forEach(function (department) { %>
+                    <div class="slab"><%= department %></div>
+
+                    <% }) %>
+                </div>
+            </div>
+             <div class="row">
+                    <div class="col-xs-4 custom-button-edit">
+                    <a href="/edit_form/<%=form._id%>">
+                        <i class="fa fa-pencil-square-o"></i><span>Edit</span></a>
+                    </div>
+                    
+                </div>
+            <hr>
+            <div class="row admin-actions">
+                <div class="col-xs-6 custom-button-login">
+                    <a href="/details/<%= form._id %>"><i class="fa fa-external-link"></i><span>View Details</span></a>
+                </div>
+               
+            </div>
+
+ <hr></hr>
+            <script>
+
+            function myForm() {
+                var change = document.getElementById("toggle");
+                if (change.innerHTML == "Activate")
+                {
+                    change.innerHTML = "Deactivate";
+                }
+                else {
+                    change.innerHTML = "Activate";
+                }
+            }
+
+        </script>
+            <div class="row">
+           <% if(form.activate==1) {%>
+           <% btnText="Deactivate";%>
+
+          <%}
+           else{%>
+            <% btnText="Activate";%>
+
+           <%}%>
+             
+            <input type="button" id="toggle" value="<%=btnText%>"  onclick="myForm()">
+            </div>    
+        </div>
+        <% }) %>
+    </div>
+    <% }%>
+    <br><br><br>
+    <% if(currentUser){ %>
+        <div class="row">
+            <div class="col-xs-6 custom-button-login">
+                <a href="/create_review"><i class="fa fa-external-link"></i><span>Create a new Review</span></a>
+            </div>
+        </div>
+        <br>
+    <% } %>
+</div> <!-- /container -->
+<% include ./partials/registration-modal.ejs %>
+<% include ./partials/login-modal.ejs %>
+<% include ./partials/footer.ejs %>
+
